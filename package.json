@@ -1,0 +1,19 @@
+{
+  "name": "discord-bump",
+  "version": "1.0.0",
+  "description": "Bump Discord Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "bump"
+  ],
+  "author": "Glenn Geenen",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "puppeteer": "^5.2.1"
+  }
+}
