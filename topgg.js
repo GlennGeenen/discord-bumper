@@ -26,5 +26,7 @@ module.exports = async function bumpTopgg() {
     await page.click('#votingvoted');
   }
 
+  await new Promise(r => setTimeout(r, 2000));
+
   await browser.close();
 };

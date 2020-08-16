@@ -15,7 +15,10 @@ module.exports = async function bumpDisboard() {
   const bumpButtons = await page.$$('.button-bump');
   for (let i = 0; i < bumpButtons.length; ++i) {
     await bumpButtons[i].click();
+    await page.waitForNavigation();
   }
+
+  await new Promise(r => setTimeout(r, 2000));
 
   await browser.close();
 };

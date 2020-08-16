@@ -29,5 +29,7 @@ module.exports = async function bumpDiscordServers() {
     }
   }
 
+  await new Promise(r => setTimeout(r, 2000));
+
   await browser.close();
 };

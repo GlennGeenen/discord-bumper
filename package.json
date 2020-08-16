@@ -1,5 +1,5 @@
 {
-  "name": "discord-bump",
+  "name": "discord-bumper",
   "version": "1.0.0",
   "description": "Bump Discord Server",
   "main": "index.js",

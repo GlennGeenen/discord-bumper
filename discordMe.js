@@ -24,7 +24,10 @@ module.exports = async function bumpDiscordMe() {
   for (let i = 0; i < bumpButtons.length; ++i) {
     await bumpButtons[i].click();
     await page.click('#bump-server-submit');
+    await page.waitForNavigation();
   }
+
+  await new Promise(r => setTimeout(r, 2000));
 
   await browser.close();
 };
