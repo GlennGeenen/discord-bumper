@@ -36,8 +36,6 @@ async function runAllBumps() {
 }
 
 const cliArguments = process.argv.slice(2);
-console.log(cliArguments);
-
 if (cliArguments.length) {
   setInterval(runAllBumps, 1000 * 60 * 60);
 } else {

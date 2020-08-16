@@ -6,16 +6,19 @@ module.exports = async function bumpDiscordMe() {
   const browser = await startBrowser();
   const page = await browser.newPage();
   await page.goto('https://discord.me');
-  await page.waitFor('.acceptcookies')
-  await page.click('.acceptcookies');
 
   // Login
+  await page.waitForSelector('.login-btn');
+
+  // Click Accept Cookies
+  await new Promise(r => setTimeout(r, 1000));
+  await page.click('.acceptcookies');
+
   await page.click('.login-btn');
   await login(page);
 
   // Go to server
   await page.waitForNavigation();
-  // await page.click('a[href="/dashboard"]')
   await page.goto('https://discord.me/dashboard');
 
   // Click All Bump Buttons
@@ -24,7 +27,6 @@ module.exports = async function bumpDiscordMe() {
   for (let i = 0; i < bumpButtons.length; ++i) {
     await bumpButtons[i].click();
     await page.click('#bump-server-submit');
-    await page.waitForNavigation();
   }
 
   await new Promise(r => setTimeout(r, 2000));
