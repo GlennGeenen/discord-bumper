@@ -1,10 +1,7 @@
 const login = require('./utils/login');
-const startBrowser = require('./utils/startBrowser');
+const runScript = require('./utils/runBrowser');
 
-module.exports = async function bumpDiscordMe() {
-  console.log('Start bumping Discord.me');
-  const browser = await startBrowser();
-  const page = await browser.newPage();
+async function discordMe(page) {
   await page.goto('https://discord.me');
 
   // Login
@@ -14,10 +11,12 @@ module.exports = async function bumpDiscordMe() {
   await new Promise(r => setTimeout(r, 1000));
   await page.click('.acceptcookies');
 
+  // Click login button
   await page.click('.login-btn');
+  // Discord login flow
   await login(page);
 
-  // Go to server
+  // Go to dashboard that contains my servers
   await page.waitForNavigation();
   await page.goto('https://discord.me/dashboard');
 
@@ -30,6 +29,9 @@ module.exports = async function bumpDiscordMe() {
   }
 
   await new Promise(r => setTimeout(r, 2000));
+}
 
-  await browser.close();
+module.exports = async function bumpDiscordMe() {
+  console.log('Start bumping Discord.me');
+  await runScript(discordMe);
 };

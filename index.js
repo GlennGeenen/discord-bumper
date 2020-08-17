@@ -3,7 +3,7 @@ const bumpDiscordMe = require('./discordMe');
 const bumpDiscordServers = require('./discordServers');
 const bumpTopgg = require('./topgg');
 
-async function runAllBumps() {
+async function runHourlyBumps() {
   try {
     await bumpDisboard();
   } catch (ex) {
@@ -18,6 +18,10 @@ async function runAllBumps() {
     console.error(ex);
   }
 
+  console.log('Bumping done.');
+}
+
+async function runDailyBumps() {
   try {
     await bumpDiscordServers();
   } catch (ex) {
@@ -32,12 +36,17 @@ async function runAllBumps() {
     console.error(ex);
   }
 
-  console.log('Bumping done.');
+  console.log('Daily Bumping done.');
 }
 
 const cliArguments = process.argv.slice(2);
 if (cliArguments.length) {
-  setInterval(runAllBumps, 1000 * 60 * 60);
+  if (cliArguments[0] === '--repeat') {
+    setInterval(runHourlyBumps, 1000 * 60 * 60);
+  }
+  if (cliArguments[0] === '--daily') {
+    runDailyBumps()
+  }
 } else {
-  runAllBumps();
+  runHourlyBumps();
 }

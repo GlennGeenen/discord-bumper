@@ -1,13 +1,10 @@
 const login = require('./utils/login');
-const startBrowser = require('./utils/startBrowser');
+const runScript = require('./utils/runBrowser');
 
-module.exports = async function bumpDisboard() {
-  console.log('Start bumping disboard.org');
-  const browser = await startBrowser();
-  const page = await browser.newPage();
+async function disboard(page) {
   await page.goto('https://disboard.org/login');
 
-  // Login
+  // Discord login flow
   await login(page);
 
   // Click All Bump Buttons
@@ -19,6 +16,9 @@ module.exports = async function bumpDisboard() {
   }
 
   await new Promise(r => setTimeout(r, 2000));
+}
 
-  await browser.close();
+module.exports = async function bumpDisboard() {
+  console.log('Start bumping disboard.org');
+  await runScript(disboard);
 };

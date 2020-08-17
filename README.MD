@@ -36,3 +36,8 @@ To keep it running and repeat every hour:
 ```
 discord-bumper --repeat
 ```
+
+To run the daily bumps:
+```
+discord-bumper --daily
+```
