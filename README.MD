@@ -22,8 +22,11 @@ This instruction will also show on first try. You are required to create a .env 
 DISCORD_USERNAME=USERNAME_HERE
 DISCORD_PASSWORD=PASSWORD_HERE
 DISCORDSERVERS_IDS=IDS_HERE
+TOTP_SECRET=SECRET_HERE
 ```
 DISCORDSERVERS_IDS is optional. You can use a comma seperated list for the server ids, you can find the id by going to https://discordservers.com and see the id in the address bar when you select a server.
+
+TOTP_SECRET is optional for when you activated 2FA
 
 ## Usage
 
