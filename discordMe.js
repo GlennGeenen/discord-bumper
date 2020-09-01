@@ -28,7 +28,7 @@ async function discordMe(page) {
     await page.click('#bump-server-submit');
   }
 
-  await new Promise(r => setTimeout(r, 2000));
+  await new Promise(r => setTimeout(r, 1000));
 }
 
 module.exports = async function bumpDiscordMe() {

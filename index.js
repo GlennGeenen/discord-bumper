@@ -3,21 +3,27 @@ const bumpDiscordMe = require('./discordMe');
 const bumpDiscordServers = require('./discordServers');
 const bumpTopgg = require('./topgg');
 
-async function runHourlyBumps() {
+async function tryDisboard() {
   try {
     await bumpDisboard();
   } catch (ex) {
     console.error('FAILED TO BUMP DISBOARD.ORG');
     console.error(ex);
   }
+}
 
+async function tryDiscordMe() {
   try {
     await bumpDiscordMe();
   } catch (ex) {
     console.error('FAILED TO BUMP DISCORD.ME');
     console.error(ex);
   }
+}
 
+async function runHourlyBumps() {
+  await tryDisboard();
+  await tryDiscordMe();
   console.log('Bumping done.');
 }
 
@@ -46,6 +52,12 @@ if (cliArguments.length) {
   }
   if (cliArguments[0] === '--daily') {
     runDailyBumps()
+  }
+  if (cliArguments[0] === '--disboard') {
+    tryDisboard()
+  }
+  if (cliArguments[0] === '--discordme') {
+    tryDiscordMe()
   }
 } else {
   runHourlyBumps();
