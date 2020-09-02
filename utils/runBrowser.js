@@ -1,10 +1,13 @@
 // Load ENV
 require('dotenv').config();
 
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 
 async function startBrowser() {
-  let options = {};
+  let options = {
+    product: 'chrome',
+    executablePath: process.env.EXECUTABLE_PATH || '/usr/bin/chromium-browser',
+  };
   if (process.env.DEBUG === 'true') {
     options = {
       headless: false,
